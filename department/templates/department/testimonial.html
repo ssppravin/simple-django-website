@@ -1,0 +1,30 @@
+{% extends 'department/base.html' %}
+{% load static %}
+{% block title %} Testimonials {% endblock title %}
+{% block header-content %}
+    <link href="{% static 'css/testimonial.css' %}", rel="stylesheet">
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+{% endblock %}
+
+{% block page-header %}
+    {% include 'department/header.html' %}
+{% endblock %}
+
+{% block page-content %}
+<body>
+    <table style="margin-top: 200px", cellpadding="20px">
+    <tr>
+    {% for testimonial in testimonials %}
+         {% if forloop.counter|divisibleby:"4" %}
+            </tr>
+            <tr>
+        {% endif %}
+        <td>{% include 'department/row_testimonial.html' with data_fields=testimonial only%}</td>
+    {% endfor %}
+    </tr>
+</table>
+{% endblock %}
