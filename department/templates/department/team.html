@@ -1,4 +1,4 @@
-{% extends 'department/base.html' %}
+{% extends 'base.html' %}
 {% load static %}
 
 {% block header-content %}
@@ -6,14 +6,15 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link href="{% static 'css/team.css' %}" rel="stylesheet">
+    <link href="{% static 'department/css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'department/css/team.css' %}" rel="stylesheet">
     <!------ Include the above in your HEAD tag ---------->
 {% endblock %}
 
 {% block title %} Our Team{% endblock title %}
 
 {% block page-header %}
-    {% include 'department/header.html' %}
+    {% include 'header.html' %}
 {% endblock %}
 {% block page-content %}
 <!-- Team -->
@@ -29,7 +30,7 @@
                             <div class="card">
                                 <div class="card-body text-center">
                                     <p><img class=" img-fluid"
-                                            src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_01.png"
+                                            src="/media/{{ data.image }}"
                                             alt="card image"></p>
                                     <h4 class="card-title">{{ data.name }}</h4>
                                     <p class="card-text">{{ data.description }}</p>

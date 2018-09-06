@@ -18,10 +18,15 @@ from django.urls import include
 from django.urls import path
 
 import department
+from blogs import urls
 from broadway import views
+from django.conf.urls.static import static
+
+from broadway import settings
 from department import mUrls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('depart/', include(mUrls)),
-]
+    path('blog/', include(urls))
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,3 +1,4 @@
+
 from . import views
 from django.urls import path
 
@@ -7,5 +8,5 @@ urlpatterns = [
     path('course', views.courses, name='course'),
     path('course/python', views.pythondepart, name='python'),
     path('testimonial', views.testimonial, name='testimonial'),
-    path('team', views.teams, name='teams')
+    path('team', views.teams, name='teams'),
 ]

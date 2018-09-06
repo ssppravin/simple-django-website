@@ -17,9 +17,10 @@ class Musician(models.Model):
     instrument = models.CharField(max_length=100)
 
 class Testimonial(models.Model):
-    name = models.CharField(max_length=100)
-    skill = models.CharField(max_length=100)
-    description = models.CharField(max_length=500)
+    name = models.CharField(max_length=100, blank=True)
+    skill = models.CharField(max_length=100, blank=True)
+    description = models.CharField(max_length=500, blank=True)
+    image = models.FileField(upload_to="testimonial", blank=True)
 
 class Album(models.Model):
     artist = models.ForeignKey(Musician, on_delete=models.CASCADE)
