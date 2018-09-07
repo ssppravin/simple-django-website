@@ -1,14 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ post.title }}</title>
-</head>
-<body>
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>{{ post.title }}</title>#}
+{#</head>#}
+{#<body>#}
+{#    <p>#}
+{#        {{ post.text }}#}
+{#    </p>#}
+{##}
+{##}
+{#</body>#}
+{#</html>#}
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    {{ post.title }}
+{% endblock %}
+
+{% block header-content %}
+    <link href="{% static 'blogs/css/bootstrap.css' %}" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+{% endblock %}
+
+{% block page-header %}
+    {% include 'header.html' %}
+{% endblock %}
+
+{% block page-content %}
     <p>
         {{ post.text }}
     </p>
-
-
-</body>
-</html>
+{% endblock %}
