@@ -23,8 +23,8 @@
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">{{ blog.author }}</h5>
-                        <p class="card-text">{{ blog.text }}</p>
-                        <a href="#" class="btn btn-primary">View Detail</a>
+                        <p class="card-text">{{ blog.text}}</p>
+                        <a href="{% url 'details' blog.id %}" class="btn btn-primary">View Detail</a>
                     </div>
                 </div>
             </tr>

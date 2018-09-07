@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Add block
+{% endblock %}
+
+{% block header-content %}
+    <link href="{% static 'blogs/css/bootstrap.css' %}" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+{% endblock %}
+
+{# Add the header view #}
+{% block page-header %}
+    {% include 'header.html' %}
+{% endblock %}
+
+{# Add the body content#}
+
+{% block page-content %}
+   <h1>New Blog</h1>
+    <form method="POST" class="post-form">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">Save</button>
+    </form>
+
+{% endblock %}
+
+
+
