@@ -1,12 +1,17 @@
+from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from django.db.models import Q
 
 # Create your views here.
 from django.views import View
+from rest_framework.decorators import api_view
 
 from blogs.forms import PostBlog
 from blogs.models import Post
+from blogs.serializers import PostSerializer
+from rest_framework.response import Response
 
 
 def allPosts(request):
@@ -20,10 +25,16 @@ def detail(request, blogId):
     context = {'post': post}
     return render(request, 'blogs/blogdetail.html', context)
 
+@api_view(['GET'])
+def api_post(request):
+    query = request.GET.get("q", "")
+    posts = Post.objects.filter(Q(title__contains=query) | Q(text__contains=query))
+    serializer = PostSerializer(posts, many=True)
+    return Response(serializer.data)
 
-# def addPost(request):
-#     form = PostBlog()
-#     return render(request, 'blogs/addblog.html', {'form' : form})
+def addPost(request):
+    form = PostBlog()
+    return render(request, 'blogs/addblog.html', {'form' : form})
 
 # def addPost(request):
 #     if request.method == "POST":
@@ -48,7 +59,13 @@ class AddPost(View):
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
         if form.is_valid():
+            postss = form.save(commit=False)
+            postss.save()
             # <process form cleaned data>
             return HttpResponseRedirect('/blog/')
         return render(request, self.template_name, {'form': form})
 
+
+# def author(request):
+#     form = AuthorForm()
+#     return render(request, 'blogs/author.html', {'authorForm': form})
