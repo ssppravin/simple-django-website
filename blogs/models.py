@@ -20,3 +20,18 @@ class Post(models.Model):
 
 class BlogAuthor(models.Model):
     author_name = models.CharField(max_length=100, blank=True)
+
+class Contacts(models.Model):
+    user_name = models.CharField(max_length=200, blank=False)
+    email = models.EmailField()
+    mobile_number = models.CharField(max_length=20, blank=True, null=True)
+    message = models.TextField(max_length=300)
+    submitted_date = models.DateTimeField(default= timezone.now())
+
+    class Meta:
+        ordering = ('submitted_date',)
+
+    def __str__(self):
+        return self.user_name
+
+    pass

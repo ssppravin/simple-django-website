@@ -9,7 +9,7 @@ from django.views import View
 from rest_framework.decorators import api_view
 
 from blogs.forms import PostBlog
-from blogs.models import Post
+from blogs.models import Post, Contacts
 from blogs.serializers import PostSerializer
 from rest_framework.response import Response
 
@@ -69,3 +69,20 @@ class AddPost(View):
 # def author(request):
 #     form = AuthorForm()
 #     return render(request, 'blogs/author.html', {'authorForm': form})
+
+def contactForm(request):
+    if request.method == "GET":
+        return render(request, 'blogs/contactpage.html')
+    elif request.method== "POST":
+        try:
+            name = request.POST['name']
+            email = request.POST['email']
+            mobile = request.POST['mobile']
+            message = request.POST['message']
+            contact = Contacts(user_name=name, email=email, mobile_number=mobile, message=message)
+            contact.save()
+            print("name = " + name)
+            return render(request, 'blogs/contactpage.html', {'success' : True})
+        except Exception as e:
+            print("error in request")
+            return  render(request, 'blogs/contactpage.html', {'success': False})
